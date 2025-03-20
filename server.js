@@ -1,5 +1,4 @@
 require('dotenv').config();
-console.log('🔍 Variables de entorno cargadas:', process.env); // Muestra las variables cargadas
 
 const express = require('express');
 const cors = require('cors');
