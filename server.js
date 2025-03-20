@@ -4,7 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
-const userRoutes = require('./src/routes/userRoutes'); // Asegúrate de que la ruta es correcta
+const userRoutes = require('./src/routes/userRoutes');
+const diagnosticoSintomasRoutes = require('./src/routes/diagnosticoRoutes'); // Nueva ruta unificada
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(morgan('dev'));
 
 // Rutas
 app.use('/api/usuarios', userRoutes);
+app.use('/api/diagnostico-sintomas', diagnosticoSintomasRoutes); // Nueva ruta
 
 // Ruta de prueba
 app.get('/', (req, res) => {
