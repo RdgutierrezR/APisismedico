@@ -1,20 +1,19 @@
 const jwt = require('jsonwebtoken');
 
-function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+const authenticateToken = (req, res, next) => {
+    const token = req.header('Authorization')?.split(' ')[1];  // El token debe estar en el encabezado Authorization
 
     if (!token) {
-        return res.sendStatus(401);
+        return res.status(401).json({ message: 'Token no proporcionado' });
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
         if (err) {
-            return res.sendStatus(403);
+            return res.status(403).json({ message: 'Token no válido' });
         }
-        req.user = user;
+        req.user = user;  // El objeto del usuario estará disponible en las siguientes rutas
         next();
     });
-}
+};
 
 module.exports = authenticateToken;
