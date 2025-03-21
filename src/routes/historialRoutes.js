@@ -1,9 +1,12 @@
 const express = require("express");
-const { crearHistorial } = require("../controller/historialController");
+const { crearHistorial, obtenerHistorialPorCedula } = require("../controller/historialController");
 
 const router = express.Router();
 
-// Endpoint para guardar historial
+// 📌 Endpoint para guardar historial
 router.post("/", crearHistorial);
+
+// 📌 Endpoint corregido para obtener historial por cédula
+router.get("/cedula/:cedula", obtenerHistorialPorCedula);
 
 module.exports = router;
