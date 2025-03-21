@@ -5,7 +5,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const userRoutes = require('./src/routes/userRoutes');
-const diagnosticoSintomasRoutes = require('./src/routes/diagnosticoRoutes'); // Nueva ruta unificada
+const diagnosticoSintomasRoutes = require('./src/routes/diagnosticoRoutes'); // Ruta unificada
+const historialRoutes = require('./src/routes/historialRoutes'); // Nueva ruta de historial
 
 const app = express();
 
@@ -16,11 +17,12 @@ app.use(morgan('dev'));
 
 // Rutas
 app.use('/api/usuarios', userRoutes);
-app.use('/api/diagnostico-sintomas', diagnosticoSintomasRoutes); // Nueva ruta
+app.use('/api/diagnostico-sintomas', diagnosticoSintomasRoutes);
+app.use('/api/historial', historialRoutes); // Nueva ruta agregada
 
 // Ruta de prueba
 app.get('/', (req, res) => {
-    res.send('API del sistema médico funcionando');
+    res.send('✅ API del sistema médico funcionando correctamente');
 });
 
 // Configuración del puerto
